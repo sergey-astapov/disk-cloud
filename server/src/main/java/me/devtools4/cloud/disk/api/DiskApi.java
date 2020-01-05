@@ -8,7 +8,7 @@ public interface DiskApi {
   String FILE_SAVE = "/api/file";
   String FILE_READ = "/api/file/{id}";
 
-  String save(String contentType, String contentDisposition, HttpServletRequest request);
+  Long save(String contentType, String contentDisposition, HttpServletRequest request);
 
-  ResponseEntity<Resource> read(String docId);
+  ResponseEntity<Resource> read(Long docId);
 }

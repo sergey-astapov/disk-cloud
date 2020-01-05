@@ -45,6 +45,7 @@
     <vavr.version>0.9.2</vavr.version>
     <commons-logging.version>1.1.1</commons-logging.version>
     <aops.version>0.0.1-SNAPSHOT</aops.version>
+    <javax.persistence.version>2.2</javax.persistence.version>
   </properties>
 
   <build>
@@ -190,6 +191,34 @@
         <artifactId>gson</artifactId>
         <version>${gson.version}</version>
       </dependency>
+
+      <!--Model-->
+      <dependency>
+        <groupId>javax.persistence</groupId>
+        <artifactId>javax.persistence-api</artifactId>
+        <version>${javax.persistence.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>5.2.2.RELEASE</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-jpa</artifactId>
+        <version>2.2.3.RELEASE</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate.javax.persistence</groupId>
+        <artifactId>hibernate-jpa-2.1-api</artifactId>
+        <version>1.0.0.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.196</version>
+      </dependency>
+
       <dependency>
         <groupId>me.devtools4.aops</groupId>
         <artifactId>aops-aspects</artifactId>

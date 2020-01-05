@@ -1,6 +1,7 @@
 package me.devtools4.cloud.disk;
 
 import me.devtools4.cloud.disk.config.AspectsConfig;
+import me.devtools4.cloud.disk.config.DiskConfig;
 import me.devtools4.cloud.disk.config.MetricsConfig;
 import me.devtools4.cloud.disk.config.SwaggerConfig;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @Configuration
 @Import({
+    DiskConfig.class,
     SwaggerConfig.class,
     AspectsConfig.class,
     MetricsConfig.class
