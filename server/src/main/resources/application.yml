@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: Disk API
+  jmx:
+    enabled: true
+  main:
+    banner-mode: 'off'
+
+---
+spring:
+  profiles: default,dev
+
+---
+spring:
+  profiles: sit
+
+---
+spring:
+  profiles: prd
+
+---
+spring:
+  profiles: test

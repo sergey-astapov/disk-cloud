@@ -1,0 +1,240 @@
+openapi: 3.0.1
+info:
+  title: Disk API
+  description: default
+  version: SNAPSHOT
+servers:
+- url: //localhost:8080/
+tags:
+- name: disk-api-controller
+  description: Disk Api Controller
+paths:
+  /api/file:
+    post:
+      tags:
+      - disk-api-controller
+      summary: save
+      operationId: saveUsingPOST_1
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Content-Type
+        required: true
+        schema:
+          type: string
+      - name: Content-Disposition
+        in: header
+        description: Content-Disposition
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+  /api/file/multi:
+    post:
+      tags:
+      - disk-api-controller
+      summary: save
+      operationId: saveUsingPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  description: file
+                  format: binary
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+  /api/file/{id}:
+    get:
+      tags:
+      - disk-api-controller
+      summary: read
+      operationId: readUsingGET
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+components:
+  schemas:
+    File:
+      type: object
+      properties:
+        absolute:
+          type: boolean
+        absoluteFile:
+          $ref: '#/components/schemas/File'
+        absolutePath:
+          type: string
+        canonicalFile:
+          $ref: '#/components/schemas/File'
+        canonicalPath:
+          type: string
+        directory:
+          type: boolean
+        file:
+          type: boolean
+        freeSpace:
+          type: integer
+          format: int64
+        hidden:
+          type: boolean
+        name:
+          type: string
+        parent:
+          type: string
+        parentFile:
+          $ref: '#/components/schemas/File'
+        path:
+          type: string
+        totalSpace:
+          type: integer
+          format: int64
+        usableSpace:
+          type: integer
+          format: int64
+    InputStream:
+      type: object
+    Resource:
+      type: object
+      properties:
+        description:
+          type: string
+        file:
+          $ref: '#/components/schemas/File'
+        filename:
+          type: string
+        inputStream:
+          $ref: '#/components/schemas/InputStream'
+        open:
+          type: boolean
+        readable:
+          type: boolean
+        uri:
+          $ref: '#/components/schemas/URI'
+        url:
+          $ref: '#/components/schemas/URL'
+    URI:
+      type: object
+      properties:
+        absolute:
+          type: boolean
+        authority:
+          type: string
+        fragment:
+          type: string
+        host:
+          type: string
+        opaque:
+          type: boolean
+        path:
+          type: string
+        port:
+          type: integer
+          format: int32
+        query:
+          type: string
+        rawAuthority:
+          type: string
+        rawFragment:
+          type: string
+        rawPath:
+          type: string
+        rawQuery:
+          type: string
+        rawSchemeSpecificPart:
+          type: string
+        rawUserInfo:
+          type: string
+        scheme:
+          type: string
+        schemeSpecificPart:
+          type: string
+        userInfo:
+          type: string
+    URL:
+      type: object
+      properties:
+        authority:
+          type: string
+        content:
+          type: object
+          properties: {}
+        defaultPort:
+          type: integer
+          format: int32
+        file:
+          type: string
+        host:
+          type: string
+        path:
+          type: string
+        port:
+          type: integer
+          format: int32
+        protocol:
+          type: string
+        query:
+          type: string
+        ref:
+          type: string
+        userInfo:
+          type: string

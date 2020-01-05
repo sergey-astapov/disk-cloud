@@ -1,0 +1,338 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "default",
+    "version": "SNAPSHOT",
+    "title": "Disk API"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "disk-api-controller",
+      "description": "Disk Api Controller"
+    }
+  ],
+  "paths": {
+    "/api/file": {
+      "post": {
+        "tags": [
+          "disk-api-controller"
+        ],
+        "summary": "save",
+        "operationId": "saveUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Content-Disposition",
+            "in": "header",
+            "description": "Content-Disposition",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/file/multi": {
+      "post": {
+        "tags": [
+          "disk-api-controller"
+        ],
+        "summary": "save",
+        "operationId": "saveUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "file",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/file/{id}": {
+      "get": {
+        "tags": [
+          "disk-api-controller"
+        ],
+        "summary": "read",
+        "operationId": "readUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Resource"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "File": {
+      "type": "object",
+      "properties": {
+        "absolute": {
+          "type": "boolean"
+        },
+        "absoluteFile": {
+          "$ref": "#/definitions/File"
+        },
+        "absolutePath": {
+          "type": "string"
+        },
+        "canonicalFile": {
+          "$ref": "#/definitions/File"
+        },
+        "canonicalPath": {
+          "type": "string"
+        },
+        "directory": {
+          "type": "boolean"
+        },
+        "file": {
+          "type": "boolean"
+        },
+        "freeSpace": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "string"
+        },
+        "parentFile": {
+          "$ref": "#/definitions/File"
+        },
+        "path": {
+          "type": "string"
+        },
+        "totalSpace": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "usableSpace": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "InputStream": {
+      "type": "object"
+    },
+    "Resource": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "file": {
+          "$ref": "#/definitions/File"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "inputStream": {
+          "$ref": "#/definitions/InputStream"
+        },
+        "open": {
+          "type": "boolean"
+        },
+        "readable": {
+          "type": "boolean"
+        },
+        "uri": {
+          "$ref": "#/definitions/URI"
+        },
+        "url": {
+          "$ref": "#/definitions/URL"
+        }
+      }
+    },
+    "URI": {
+      "type": "object",
+      "properties": {
+        "absolute": {
+          "type": "boolean"
+        },
+        "authority": {
+          "type": "string"
+        },
+        "fragment": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "opaque": {
+          "type": "boolean"
+        },
+        "path": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "query": {
+          "type": "string"
+        },
+        "rawAuthority": {
+          "type": "string"
+        },
+        "rawFragment": {
+          "type": "string"
+        },
+        "rawPath": {
+          "type": "string"
+        },
+        "rawQuery": {
+          "type": "string"
+        },
+        "rawSchemeSpecificPart": {
+          "type": "string"
+        },
+        "rawUserInfo": {
+          "type": "string"
+        },
+        "scheme": {
+          "type": "string"
+        },
+        "schemeSpecificPart": {
+          "type": "string"
+        },
+        "userInfo": {
+          "type": "string"
+        }
+      }
+    },
+    "URL": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string"
+        },
+        "content": {
+          "type": "object"
+        },
+        "defaultPort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "file": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "userInfo": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
