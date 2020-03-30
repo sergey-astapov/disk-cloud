@@ -12,7 +12,7 @@
     <relativePath>../</relativePath>
   </parent>
 
-  <artifactId>disck-cloud-service-k8s</artifactId>
+  <artifactId>disk-cloud-service-k8s</artifactId>
   <packaging>pom</packaging>
 
   <build>
