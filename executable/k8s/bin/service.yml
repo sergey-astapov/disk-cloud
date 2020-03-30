@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: disk-cloud-service
+spec:
+  selector:
+    app: disk-cloud-service-svc
+  externalTrafficPolicy: Cluster
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    name: disk-cloud-service-tcp
+    port: 8080
+    targetPort: 8080
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: disk-cloud-service
+  labels:
+    app: disk-cloud-service-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: disk-cloud-service-svc
+  template:
+    metadata:
+      labels:
+        app: disk-cloud-service-svc
+        track: stable
+    spec:
+      hostname: disk-cloud-service
+      containers:
+      - name: disk-cloud-service
+        image: asa/disk-cloud-service:latest
+        volumeMounts:
+          - name: application-bootstrap
+            mountPath: /opt/config
+        ports:
+        - containerPort: 8080
+      volumes:
+        - name: application-bootstrap
+          configMap:
+            name: disk-cloud-service-bootstrap
+            items:
+              - key: bootstrap.yml
+                path: bootstrap.yml
+---
