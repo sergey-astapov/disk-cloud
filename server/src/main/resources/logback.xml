@@ -8,8 +8,6 @@
     <resetJUL>true</resetJUL>
   </contextListener>
 
-  <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG"/>
-
   <logger name="me.devtools4.cloud.disk.controller.DiskApiController" level="TRACE"/>
 
   <root level="INFO">

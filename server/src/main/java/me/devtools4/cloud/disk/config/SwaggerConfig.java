@@ -24,14 +24,15 @@ public class SwaggerConfig {
 
   @Bean
   public Docket documentation() {
+    String version = version();
     return new Docket(SWAGGER_2)
         .select()
         .apis(basePackage(DiskApiController.class.getPackage().getName()))
         .build()
         .apiInfo(new ApiInfoBuilder()
             .title("Disk API")
-            .description(activeProfile)
-            .version(version())
+            .description("version=" + version + " profile=" + activeProfile)
+            .version(version)
             .build());
   }
 
