@@ -12,6 +12,7 @@
   <modules>
     <module>schema</module>
     <module>server</module>
+    <module>executable</module>
   </modules>
 
   <properties>
