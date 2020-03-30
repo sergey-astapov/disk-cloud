@@ -16,7 +16,7 @@
 
   <modules>
     <module>service</module>
-    <!--<module>onprem</module>-->
+    <module>onprem</module>
     <!--<module>k8s</module>-->
   </modules>
 </project>
