@@ -15,7 +15,7 @@ spec:
     targetPort: 8080
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: disk-cloud-service
@@ -35,7 +35,7 @@ spec:
       hostname: disk-cloud-service
       containers:
       - name: disk-cloud-service
-        image: asa/disk-cloud-service:latest
+        image: devtools4me/disk-cloud:latest
         volumeMounts:
           - name: application-bootstrap
             mountPath: /opt/config
