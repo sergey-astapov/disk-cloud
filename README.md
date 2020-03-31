@@ -19,6 +19,8 @@ docker push devtools4me/disk-cloud
 
 ### K8S
 
+[AWS K8S Setup](./doc/aws-k8s-setup.md)
+
 #### Disk Cloud API K8S Installation
 
 ```
@@ -33,7 +35,32 @@ kubectl apply -f service.yml
 kubectl get services
 kubectl get pods
 kubectl logs disk-cloud-service-69f4f68c94-mll2w
-curl http://54.251.142.28:32564/swagger-ui.html
+```
+
+[Setup EC2 Security Groups](#ec2-security-groups)
+
+```
+curl http://<Master PUB IP-Address>:32564/swagger-ui.html
+```
+
+#### EC2 Security Groups
+
+```
+kubectl get services
+```
+
+|NAME|TYPE|CLUSTER-IP|EXTERNAL-IP|PORT(S)|AGE|
+|---|---|---|---|---|---|
+|disk-cloud-service|LoadBalancer|100.71.60.186|<pending>|8080:32564/TCP|167m|
+
+**Need to open NodePort=32564**
+
+*Instances > master-ap-southeast-1b.masters.k8s.devtools4.me > Description > Security Groups*
+
+*Add New Rule > Inbound Port=32564 > Any IP address *
+
+```
+curl http://<PUB IP-Address>:32564/swagger-ui.html
 ```
 
 ### On-Premise
