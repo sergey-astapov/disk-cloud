@@ -174,3 +174,48 @@ www.namecheap.com
 | k8s  | ns-1663.awsdns-15.co.uk |
 | k8s  | ns-296.awsdns-37.com |
 | k8s  | ns-1274.awsdns-31.org |
+
+## Docker
+
+```
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo usermod -G docker vagrant
+
+exit
+vagrant ssh
+
+docker
+docker --version
+```
+
+## Java
+
+```
+sudo apt install openjdk-8-jdk
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+```
+
+## Maven
+
+```
+wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+tar -xvf apache-maven-3.6.3-bin.tar.gz
+mv apache-maven-3.6.3 apache-maven
+
+sudo mv apache-maven /opt
+export PATH=/opt/apache-maven/bin:$PATH
+```
