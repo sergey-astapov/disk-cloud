@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres-svc
+  externalTrafficPolicy: Cluster
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    name: postgres-tcp
+    port: 5432
+    targetPort: 5432
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: postgres-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-svc
+  template:
+    metadata:
+      labels:
+        app: postgres-svc
+        track: stable
+    spec:
+      hostname: postgres
+      containers:
+        - name: postgres
+          image: postgres:11.7
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: diskcloud-db
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: diskcloud#123
+---

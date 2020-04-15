@@ -120,6 +120,13 @@ kubectl get nodes
 |ip-172-20-39-49.ap-southeast-1.compute.internal|Ready|node|10m|v1.16.7|
 |ip-172-20-44-31.ap-southeast-1.compute.internal|Ready|node|11m|v1.16.7|
 
+#### Delete K8S Cluster
+
+```
+kops delete cluster --name k8s.devtools4.me --state=s3://kops-state-sg-250320-15-43
+kops delete cluster --name k8s.devtools4.me --state=s3://kops-state-sg-250320-15-43 --yes
+```
+
 #### Priv/Pub Key
 
 ```
