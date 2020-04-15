@@ -57,8 +57,24 @@
 
     <dependency>
       <groupId>me.devtools4.aops</groupId>
-      <artifactId>aops-aspects</artifactId>
+      <artifactId>aops-annotations</artifactId>
+      <version>${aops.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/aops-annotations.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>me.devtools4.aops</groupId>
+      <artifactId>aops-aspects</artifactId>
+      <version>${aops.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/aops-aspects.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>io.dropwizard.metrics</groupId>
+      <artifactId>metrics-core</artifactId>
+      <version>${metrics.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
