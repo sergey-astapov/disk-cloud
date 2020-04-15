@@ -1,5 +1,7 @@
 # Disk Cloud
 
+[![Travis](https://img.shields.io/travis/sergey-astapov/disk-cloud.svg)](https://travis-ci.org/sergey-astapov/disk-cloud)
+
 Disk Cloud
 
 ## Installation
