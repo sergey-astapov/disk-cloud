@@ -19,6 +19,26 @@ docker build -t devtools4me/disk-cloud .
 docker push devtools4me/disk-cloud
 ```
 
+#### Docker Centos
+
+```
+docker build -f Dockerfile -t centos/disk-cloud .
+docker run -p 8080:8080 -p 8778:8778 centos/disk-cloud
+```
+
+#### Docker Alpine
+
+```
+docker build -f Dockerfile.alpine -t alpine/disk-cloud .
+docker run -p 8080:8080 -p 8778:8778 alpine/disk-cloud
+```
+
+#### Run HAWTIO
+
+```
+java -jar ~/devtools/hawtio/hawtio-app-2.10.0.jar --port 8181
+```
+
 ### K8S
 
 [AWS K8S Setup](./doc/aws-k8s-setup.md)
